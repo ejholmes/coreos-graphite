@@ -1,0 +1,11 @@
+[Unit]
+Description=StatsD
+After=carbon.service
+Requires=carbon.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm --name statsd --env GRAPHITE_HOST=%H -p 8126:8126 -p 8125:8125/udp ejholmes/statsd
+ExecStop=/usr/bin/docker rm -f statsd
+
+[Install]
+WantedBy=graphite.target

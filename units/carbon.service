@@ -1,0 +1,11 @@
+[Unit]
+Description=Carbon
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm --name carbon -p 2003:2003 -p 2004:2004 ejholmes/carbon
+ExecStop=/usr/bin/docker rm -f carbon
+
+[Install]
+WantedBy=graphite.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Graphite
+After=carbon.service
+Requires=carbon.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm --name graphite -p 80:80 --volumes-from carbon ejholmes/graphite
+ExecStop=/usr/bin/docker rm -f graphite
+
+[Install]
+WantedBy=graphite.target
