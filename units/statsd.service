@@ -9,3 +9,6 @@ ExecStop=/usr/bin/docker rm -f statsd
 
 [Install]
 WantedBy=graphite.target
+
+[X-Fleet]
+X-ConditionMachineOf=carbon.service
