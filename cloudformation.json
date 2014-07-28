@@ -102,17 +102,13 @@
     "Ingress80": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupName": {"Ref": "CoreOSSecurityGroup"}, "IpProtocol": "tcp", "FromPort": "80", "ToPort": "80", "SourceSecurityGroupId": {
-          "Fn::GetAtt" : [ "CoreOSSecurityGroup", "GroupId" ] 
-        } 
+        "GroupName": {"Ref": "CoreOSSecurityGroup"}, "IpProtocol": "tcp", "FromPort": "80", "ToPort": "80", "CidrIp": "0.0.0.0/0"
       }
     },
     "Ingress8125": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupName": {"Ref": "CoreOSSecurityGroup"}, "IpProtocol": "udp", "FromPort": "8125", "ToPort": "8125", "SourceSecurityGroupId": {
-          "Fn::GetAtt" : [ "CoreOSSecurityGroup", "GroupId" ] 
-        } 
+        "GroupName": {"Ref": "CoreOSSecurityGroup"}, "IpProtocol": "udp", "FromPort": "8125", "ToPort": "8125", "CidrIp": "0.0.0.0/0"
       }
     },
     "CoreOSServerAutoScale": {
