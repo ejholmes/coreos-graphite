@@ -4,8 +4,11 @@ After=docker.service
 Requires=docker.service
 
 [Service]
+ExecStartPre=/usr/bin/docker pull ejholmes/carbon
 ExecStart=/usr/bin/docker run --rm --name carbon -p 2003:2003 -p 2004:2004 ejholmes/carbon
-ExecStop=/usr/bin/docker rm -f carbon
+ExecStartPost=/usr/bin/etcdctl set /carbon/host %H
+ExecStop=/usr/bin/docker kill carbon
+ExecStopPost=/usr/bin/etcdctl rm /carbon/host
 
 [Install]
 WantedBy=graphite.target
